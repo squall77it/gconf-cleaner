@@ -1,0 +1,25 @@
+2007-03-06  Akira TAGOH  <at@gclab.org>
+
+	* requires: new.
+
+	* configure.ac: new.
+
+	* AUTHORS: new
+
+	* INSTALL: new
+
+	* src/gconf-cleaner.[ch]: implemented.
+
+	* src/Makefile.am: new
+
+	* ChangeLog: new
+
+	* COPYING: new.
+
+	* Makefile.am: new.
+
+	* autogen.sh: new.
+
+	* NEWS: new.
+
+	* README: new.
