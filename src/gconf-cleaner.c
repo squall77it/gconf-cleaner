@@ -36,6 +36,7 @@ struct _GConfCleaner {
 	guint        n_dirs;
 	guint        n_pairs;
 	guint        n_unknown_pairs;
+	gboolean     initialized;
 };
 
 /*
@@ -101,6 +102,12 @@ gconf_cleaner_free(GConfCleaner *gcleaner)
 }
 
 gboolean
+gconf_cleaner_is_initialized(GConfCleaner *gcleaner)
+{
+	return gcleaner->initialized;
+}
+
+gboolean
 gconf_cleaner_update(GConfCleaner  *gcleaner,
 		     GError       **error)
 {
@@ -114,6 +121,7 @@ gconf_cleaner_update(GConfCleaner  *gcleaner,
 	gcleaner->n_dirs = gcleaner->n_pairs = gcleaner->n_unknown_pairs = 0;
 	gcleaner->dirs = _gconf_cleaner_all_dirs_recursively(gcleaner, "/", error);
 	gcleaner->current_dir = gcleaner->dirs;
+	gcleaner->initialized = TRUE;
 
 	return *error == NULL;
 }
@@ -175,7 +183,7 @@ gconf_cleaner_get_unknown_pairs_at_current_dir(GConfCleaner  *gcleaner,
 		if (!schema) {
 			gcleaner->n_unknown_pairs++;
 			retval = g_slist_append(retval, g_strdup(gconf_entry_get_key(pair)));
-			retval = g_slist_append(retval, gconf_entry_get_value(pair));
+			retval = g_slist_append(retval, gconf_value_copy(gconf_entry_get_value(pair)));
 		}
 		gconf_entry_free(pair);
 	}
@@ -183,6 +191,15 @@ gconf_cleaner_get_unknown_pairs_at_current_dir(GConfCleaner  *gcleaner,
 		g_slist_free(pairs);
 
 	return retval;
+}
+
+const gchar *
+gconf_cleaner_get_current_dir(GConfCleaner *gcleaner)
+{
+	g_return_val_if_fail (gcleaner != NULL, NULL);
+	g_return_val_if_fail (gcleaner->current_dir != NULL, NULL);
+
+	return gcleaner->current_dir->data;
 }
 
 void

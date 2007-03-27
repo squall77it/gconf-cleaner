@@ -1,3 +1,13 @@
+2007-03-27  Akira TAGOH  <at@gclab.org>
+
+	* src/gconf-cleaner.c (gconf_cleaner_get_unknown_pairs_at_current_dir):
+	Make GConfValue copy to not lost the data.
+	(gconf_cleaner_get_current_dir): new function.
+
+	* src/main.c: most implementation done.
+
+	* requires (GTK_REQUIRED): depends on 2.6.
+
 2007-03-06  Akira TAGOH  <at@gclab.org>
 
 	* requires: new.
