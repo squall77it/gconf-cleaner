@@ -62,7 +62,7 @@ AM_GLIB_DEFINE_LOCALEDIR(GCLEANER_LOCALEDIR)
 dnl ======================================================================
 dnl check pkg-config stuff
 dnl ======================================================================
-PKG_CHECK_MODULES(GCLEANER, glib-2.0 gtk+-2.0 gconf-2.0)
+PKG_CHECK_MODULES(GCLEANER, glib-2.0 gtk+-2.0 >= $GTK_REQUIRED gconf-2.0)
 AC_SUBST(GCLEANER_CFLAGS)
 AC_SUBST(GCLEANER_LIBS)
 

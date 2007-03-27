@@ -31,8 +31,10 @@ typedef struct _GConfCleaner GConfCleaner;
 
 GConfCleaner *gconf_cleaner_new                             (void);
 void          gconf_cleaner_free                            (GConfCleaner  *gcleaner);
+gboolean      gconf_cleaner_is_initialized                  (GConfCleaner  *gcleaner);
 gboolean      gconf_cleaner_update                          (GConfCleaner  *gcleaner,
 							     GError       **error);
+const gchar  *gconf_cleaner_get_current_dir                 (GConfCleaner  *gcleaner);
 guint         gconf_cleaner_n_dirs                          (GConfCleaner  *gcleaner);
 guint         gconf_cleaner_n_pairs                         (GConfCleaner  *gcleaner);
 guint         gconf_cleaner_n_unknown_pairs                 (GConfCleaner  *gcleaner);
