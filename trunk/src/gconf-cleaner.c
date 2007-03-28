@@ -50,9 +50,16 @@ _gconf_cleaner_all_dirs_recursively(GConfCleaner      *gcleaner,
 {
 	GSList *subdirs, *l, *retval = NULL;
 	GError *err = NULL;
+	gint i;
+	static const gchar *blacklist[] = {
+		"schemas", "profiles", "prefs",
+		NULL
+	};
 
-	if (strncmp(path, "/schemas", 8) == 0)
-		return NULL;
+	for (i = 0; blacklist[i] != NULL; i++) {
+		if (strcmp(g_basename(path), blacklist[i]) == 0)
+			return NULL;
+	}
 
 	subdirs = gconf_engine_all_dirs(gcleaner->gconf, path, &err);
 	if (err != NULL) {

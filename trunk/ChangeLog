@@ -1,5 +1,7 @@
 2007-03-28  Akira TAGOH  <at@gclab.org>
 
+	* src/gconf-cleaner.c (_gconf_cleaner_all_dirs_recursively): add blacklist.
+
 	* src/main.c (_gconf_cleaner_error_dialog): new function.
 	(_gconf_cleaner_cancel_confirm_on_response): new function.
 	(_gconf_cleaner_on_assistant_cancel): new function.
