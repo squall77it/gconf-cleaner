@@ -24,6 +24,7 @@
 #include "config.h"
 #endif
 
+#include <string.h>
 #include <glib/gi18n.h>
 #include <gconf/gconf.h>
 #include "gconf-cleaner.h"
@@ -49,6 +50,9 @@ _gconf_cleaner_all_dirs_recursively(GConfCleaner      *gcleaner,
 {
 	GSList *subdirs, *l, *retval = NULL;
 	GError *err = NULL;
+
+	if (strncmp(path, "/schemas", 8) == 0)
+		return NULL;
 
 	subdirs = gconf_engine_all_dirs(gcleaner->gconf, path, &err);
 	if (err != NULL) {
@@ -215,4 +219,15 @@ gconf_cleaner_pairs_free(GSList *list)
 		gconf_value_free(l->data);
 	}
 	g_slist_free(list);
+}
+
+void
+gconf_cleaner_unset_key(GConfCleaner  *gcleaner,
+			const gchar   *key,
+			GError       **error)
+{
+	g_return_if_fail (gcleaner != NULL);
+	g_return_if_fail (key != NULL);
+
+	gconf_engine_unset(gcleaner->gconf, key, error);
 }
