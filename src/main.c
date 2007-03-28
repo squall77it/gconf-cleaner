@@ -371,14 +371,16 @@ _gconf_cleaner_create_page(GConfCleanerInstance *inst)
 	} G_STMT_END;
 	/* page 2 */
 	G_STMT_START {
-		GtkWidget *vbox;
+		GtkWidget *vbox, *vbox2;
 
-		vbox = gtk_vbox_new(FALSE, 5);
+		vbox = gtk_vbox_new(FALSE, 0);
+		vbox2 = gtk_vbox_new(FALSE, 5);
 		inst->label_progress = gtk_label_new("");
 		inst->progressbar = gtk_progress_bar_new();
 
-		gtk_box_pack_start(GTK_BOX (vbox), inst->label_progress, FALSE, TRUE, 0);
-		gtk_box_pack_start(GTK_BOX (vbox), inst->progressbar, FALSE, TRUE, 0);
+		gtk_box_pack_start(GTK_BOX (vbox2), inst->label_progress, FALSE, TRUE, 0);
+		gtk_box_pack_start(GTK_BOX (vbox2), inst->progressbar, FALSE, TRUE, 0);
+		gtk_box_pack_start(GTK_BOX (vbox), vbox2, TRUE, FALSE, 0);
 
 		gtk_assistant_append_page(GTK_ASSISTANT (inst->window),
 					  vbox);
