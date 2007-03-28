@@ -41,6 +41,9 @@ guint         gconf_cleaner_n_unknown_pairs                 (GConfCleaner  *gcle
 GSList       *gconf_cleaner_get_unknown_pairs_at_current_dir(GConfCleaner  *gcleaner,
 							     GError       **error);
 void          gconf_cleaner_pairs_free                      (GSList        *list);
+void          gconf_cleaner_unset_key                       (GConfCleaner  *gcleaner,
+							     const gchar   *key,
+							     GError       **error);
 
 G_END_DECLS
 

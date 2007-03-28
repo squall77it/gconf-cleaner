@@ -1,3 +1,16 @@
+2007-03-28  Akira TAGOH  <at@gclab.org>
+
+	* src/main.c (_gconf_cleaner_error_dialog): new function.
+	(_gconf_cleaner_cancel_confirm_on_response): new function.
+	(_gconf_cleaner_on_assistant_cancel): new function.
+	(_gconf_cleaner_run_analysis_cb): Clear the pairs list if analysis ran once.
+	(_gconf_cleaner_create_page): Fix a typo.
+	(main): Destroy data.
+
+	* src/gconf-cleaner.c (_gconf_cleaner_all_dirs_recursively):
+	exclude /schemas.
+	(gconf_cleaner_unset_key): new function.
+
 2007-03-27  Akira TAGOH  <at@gclab.org>
 
 	* src/gconf-cleaner.c (gconf_cleaner_get_unknown_pairs_at_current_dir):

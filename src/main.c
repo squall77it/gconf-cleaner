@@ -60,9 +60,60 @@ typedef struct _GConfCleanerPageCallback {
  * Private Functions
  */
 static void
+_gconf_cleaner_error_dialog(GConfCleanerInstance *inst,
+			    const gchar          *primary_text,
+			    const gchar          *secondary_text)
+{
+	GtkWidget *dialog = gtk_message_dialog_new_with_markup(GTK_WINDOW (inst->window),
+							       GTK_DIALOG_MODAL,
+							       GTK_MESSAGE_ERROR,
+							       GTK_BUTTONS_OK,
+							       primary_text);
+
+	gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG (dialog),
+						 secondary_text);
+	g_signal_connect(dialog, "response",
+			 G_CALLBACK (gtk_widget_destroy), NULL);
+
+	while (g_main_context_pending(NULL))
+		g_main_context_iteration(NULL, TRUE);
+
+	gtk_dialog_run(GTK_DIALOG (dialog));
+	gtk_main_quit();
+}
+
+static void
+_gconf_cleaner_cancel_confirm_on_response(GtkDialog *dialog,
+					  gint       response_id,
+					  gpointer   data)
+{
+	if (response_id == GTK_RESPONSE_YES)
+		gtk_main_quit();
+	gtk_widget_destroy(GTK_WIDGET (dialog));
+}
+
+static void
 _gconf_cleaner_on_assistant_cancel(GtkWidget *widget,
 				   gpointer   data)
 {
+	GtkWidget *dialog;
+	GConfCleanerInstance *inst = data;
+
+	dialog = gtk_message_dialog_new_with_markup(GTK_WINDOW (inst->window),
+						    GTK_DIALOG_MODAL,
+						    GTK_MESSAGE_WARNING,
+						    GTK_BUTTONS_YES_NO,
+						    _("<span weight=\"bold\" size=\"larger\">Do you want to leave GConf Cleaner?</span>"));
+	gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG (dialog),
+						 _("If you leave here, any GConf keys will not be cleaned up."));
+	g_signal_connect(dialog, "response",
+			 G_CALLBACK (_gconf_cleaner_cancel_confirm_on_response),
+			 NULL);
+
+	while (g_main_context_pending(NULL))
+		g_main_context_iteration(NULL, TRUE);
+
+	gtk_dialog_run(GTK_DIALOG (dialog));
 }
 
 static void
@@ -124,6 +175,10 @@ _gconf_cleaner_run_analysis_cb(gpointer data)
 	GSList *l;
 	GtkWidget *page;
 
+	if (inst->pairs) {
+		gconf_cleaner_pairs_free(inst->pairs);
+		inst->pairs = NULL;
+	}
 	gtk_label_set_text(GTK_LABEL (inst->label_progress),
 			   _("Retrieving the GConf directories..."));
 	while (g_main_context_pending(NULL))
@@ -131,27 +186,15 @@ _gconf_cleaner_run_analysis_cb(gpointer data)
 
 	gconf_cleaner_update(inst->cleaner, &error);
 	if (error != NULL) {
-		GtkWidget *dialog;
-
-		dialog = gtk_message_dialog_new_with_markup(GTK_WINDOW (inst->window),
-							    GTK_DIALOG_MODAL,
-							    GTK_MESSAGE_ERROR,
-							    GTK_BUTTONS_OK,
-							    _("<span weight=\"bold\" size=\"larger\">Failed during the initialization</span>"));
-		gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG (dialog),
-							 error->message);
-		g_signal_connect(dialog, "response",
-				 G_CALLBACK (gtk_widget_destroy), NULL);
-		while (g_main_context_pending(NULL)) {
-			g_main_context_iteration(NULL, TRUE);
-		}
-		gtk_dialog_run(GTK_DIALOG (dialog));
-
+		_gconf_cleaner_error_dialog(inst,
+					    _("<span weight=\"bold\" size=\"larger\">Failed during the initialization</span>"),
+					    error->message);
 		return FALSE;
 	}
 
 	gtk_label_set_text(GTK_LABEL (inst->label_progress),
 			   _("Analyzing the GConf directories..."));
+
 	while (g_main_context_pending(NULL))
 		g_main_context_iteration(NULL, TRUE);
 
@@ -175,6 +218,10 @@ _gconf_cleaner_run_analysis_cb(gpointer data)
 
 		l = gconf_cleaner_get_unknown_pairs_at_current_dir(inst->cleaner, &error);
 		if (error != NULL) {
+			_gconf_cleaner_error_dialog(inst,
+						    _("<span weight=\"bold\" size=\"larger\">Failed during analyzing the GConf key</span>"),
+						    error->message);
+			return FALSE;
 		} else {
 			inst->pairs = g_slist_concat(inst->pairs, l);
 		}
@@ -190,7 +237,7 @@ _gconf_cleaner_run_analysis_cb(gpointer data)
 }
 
 static gboolean
-_gconf_cleaner_run_analyzed_result_cb(gpointer data)
+_gconf_cleaner_run_analyzing_result_cb(gpointer data)
 {
 	GConfCleanerInstance *inst = data;
 	gchar *text;
@@ -252,6 +299,8 @@ _gconf_cleaner_run_cleaning_cb(gpointer data)
 		do {
 			gtk_tree_model_get(model, &iter, 0, &flag, 1, &key, -1);
 			if (flag) {
+				GError *error = NULL;
+
 				i++;
 				gtk_progress_bar_set_text(GTK_PROGRESS_BAR (inst->progressbar2), key);
 				gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR (inst->progressbar2),
@@ -260,17 +309,22 @@ _gconf_cleaner_run_cleaning_cb(gpointer data)
 				while (g_main_context_pending(NULL))
 					g_main_context_iteration(NULL, TRUE);
 
-				/* FIXME: real cleaning */
+				gconf_cleaner_unset_key(inst->cleaner, key, &error);
+				if (error) {
+					_gconf_cleaner_error_dialog(inst,
+								    _("<span weight=\"bold\" size=\"larger\">Failed during cleaning GConf key up."),
+								    error->message);
+					return FALSE;
+				}
 			}
 		} while (gtk_tree_model_iter_next(model, &iter));
-
-		page = gtk_assistant_get_nth_page(GTK_ASSISTANT (inst->window),
-						  gtk_assistant_get_current_page(GTK_ASSISTANT (inst->window)));
-		gtk_assistant_set_page_complete(GTK_ASSISTANT (inst->window),
-						page, TRUE);
-		gtk_widget_set_sensitive(GTK_ASSISTANT (inst->window)->back, FALSE);
-	} else {
 	}
+	page = gtk_assistant_get_nth_page(GTK_ASSISTANT (inst->window),
+					  gtk_assistant_get_current_page(GTK_ASSISTANT (inst->window)));
+	gtk_assistant_set_page_complete(GTK_ASSISTANT (inst->window),
+					page, TRUE);
+	gtk_widget_set_sensitive(GTK_ASSISTANT (inst->window)->back, FALSE);
+	g_signal_emit_by_name(GTK_ASSISTANT (inst->window)->forward, "clicked");
 
 	return FALSE;
 }
@@ -353,7 +407,7 @@ _gconf_cleaner_create_page(GConfCleanerInstance *inst)
 		vbox = gtk_vbox_new(FALSE, 0);
 		table = gtk_table_new(rows, 2, FALSE);
 		label_dirs = gtk_label_new(_("<b>GConf directories:</b>"));
-		label_keys = gtk_label_new(_("<b>Stored GConf keys:</b>"));
+		label_keys = gtk_label_new(_("<b>Total GConf keys:</b>"));
 		label_pairs = gtk_label_new(_("<b>Cleanable GConf keys:</b>"));
 		inst->label_n_dirs = gtk_label_new("?");
 		inst->label_n_pairs = gtk_label_new("?");
@@ -427,7 +481,7 @@ _gconf_cleaner_create_page(GConfCleanerInstance *inst)
 		gtk_assistant_append_page(GTK_ASSISTANT (inst->window),
 					  vbox);
 		gtk_assistant_set_page_title(GTK_ASSISTANT (inst->window),
-					     vbox, _("Analyzed Result"));
+					     vbox, _("Analyzing Result"));
 		gtk_assistant_set_page_type(GTK_ASSISTANT (inst->window),
 					    vbox, GTK_ASSISTANT_PAGE_CONTENT);
 		gtk_assistant_set_page_complete(GTK_ASSISTANT (inst->window),
@@ -435,7 +489,7 @@ _gconf_cleaner_create_page(GConfCleanerInstance *inst)
 
 		cb = g_new0(GConfCleanerPageCallback, 1);
 		cb->widget = vbox;
-		cb->func = _gconf_cleaner_run_analyzed_result_cb;
+		cb->func = _gconf_cleaner_run_analyzing_result_cb;
 		g_ptr_array_add(inst->pages, cb);
 	} G_STMT_END;
 	/* page 4 */
@@ -462,7 +516,7 @@ _gconf_cleaner_create_page(GConfCleanerInstance *inst)
 	/* page 5 */
 	G_STMT_START {
 		inst->label_cleaned_pairs = gtk_label_new("?");
-		gtk_label_set_line_wrap(GTK_LABEL (label), TRUE);
+		gtk_label_set_line_wrap(GTK_LABEL (inst->label_cleaned_pairs), TRUE);
 
 		gtk_assistant_append_page(GTK_ASSISTANT (inst->window),
 					  inst->label_cleaned_pairs);
@@ -525,6 +579,15 @@ main(int    argc,
 
 	if (inst->cleaner)
 		gconf_cleaner_free(inst->cleaner);
+	if (inst->pairs)
+		gconf_cleaner_pairs_free(inst->pairs);
+	if (inst->pages) {
+		gint i;
+
+		for (i = 0; i < inst->pages->len; i++)
+			g_free(g_ptr_array_index(inst->pages, i));
+		g_ptr_array_free(inst->pages, TRUE);
+	}
 	g_free(inst);
 
 	return 0;
