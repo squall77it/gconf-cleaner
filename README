@@ -1,0 +1,16 @@
+GConf Cleaner
+===============
+GConf Cleaner is a tool to clean your GConf database up that
+is possibly ate away with the unnecessary keys anymore or
+the invalid keys.  You may want to keep a clean your GConf
+database. this tool might help you in this case.
+
+IMPORTANT: READ THIS BEFORE DOING
+===================================
+On some applications, they puts the GConf keys without
+schemas. in such case, your applications might be damaged
+after cleaning up. I'd recommend to save an registry in
+GConf Cleaner before actually cleaning up and if you see any
+weird behavior in your applications, restore your lost keys
+with gconftool --load <saved filename>.
+
