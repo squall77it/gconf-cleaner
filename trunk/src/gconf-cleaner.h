@@ -44,6 +44,8 @@ void          gconf_cleaner_pairs_free                      (GSList        *list
 void          gconf_cleaner_unset_key                       (GConfCleaner  *gcleaner,
 							     const gchar   *key,
 							     GError       **error);
+void          gconf_cleaner_sync                            (GConfCleaner  *gcleaner,
+							     GError       **error);
 
 G_END_DECLS
 

@@ -1,3 +1,22 @@
+2007-04-01  Akira TAGOH  <at@gclab.org>
+
+	* src/main.c (_gconf_cleaner_question_dialog): new function.
+	(_gconf_cleaner_value_type_to_string): new function.
+	(_gconf_cleaner_value_list_to_string): new function.
+	(_gconf_cleaner_value_pair_to_string): new function.
+	(_gconf_cleaner_value_to_string): new function.
+	(_gconf_cleaner_button_about_on_clicked): new function.
+	(_gconf_cleaner_on_assistant_cancel): new function.
+	(_gconf_cleaner_save_on_response): new function.
+	(_gconf_cleaner_save_on_clicked): new function.
+	(_gconf_cleaner_run_cleaning_cb): sync DB after all unknown
+	pairs removed.
+	(_gconf_cleaner_create_page): add an expander to show the list
+	which keys are candidates.
+
+	* src/gconf-cleaner.c (_gconf_cleaner_all_dirs_recursively): add more blacklists.
+	(gconf_cleaner_sync): new function.
+
 2007-03-28  Akira TAGOH  <at@gclab.org>
 
 	* src/gconf-cleaner.c (_gconf_cleaner_all_dirs_recursively): add blacklist.
