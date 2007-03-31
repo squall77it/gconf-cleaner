@@ -46,23 +46,29 @@ struct _GConfCleaner {
 static GSList *
 _gconf_cleaner_all_dirs_recursively(GConfCleaner      *gcleaner,
 				    const gchar       *path,
+				    gboolean          *is_blocked,
 				    GError           **error)
 {
 	GSList *subdirs, *l, *retval = NULL;
 	GError *err = NULL;
 	gint i;
 	static const gchar *blacklist[] = {
-		"schemas", "profiles", "prefs",
-		NULL
+		"schemas", "profiles", "preferences", "prefs",
+		NULL,
 	};
 
+	if (is_blocked)
+		*is_blocked = FALSE;
 	for (i = 0; blacklist[i] != NULL; i++) {
-		if (strcmp(g_basename(path), blacklist[i]) == 0)
+		if (strcmp(g_basename(path), blacklist[i]) == 0) {
+			if (is_blocked)
+				*is_blocked = TRUE;
 			return NULL;
+		}
 	}
 
 	subdirs = gconf_engine_all_dirs(gcleaner->gconf, path, &err);
-	if (err != NULL) {
+	if (G_UNLIKELY (err != NULL)) {
 		if (error)
 			g_set_error(error, 0, 0,
 				    N_("Failed to get the directories in `%s': %s"),
@@ -71,15 +77,25 @@ _gconf_cleaner_all_dirs_recursively(GConfCleaner      *gcleaner,
 		return NULL;
 	}
 	for (l = subdirs; l != NULL; l = g_slist_next(l)) {
-		gcleaner->n_dirs++;
-		retval = g_slist_append(retval, l->data);
-		retval = g_slist_concat(retval,
-					_gconf_cleaner_all_dirs_recursively(gcleaner,
-									    l->data,
-									    error));
-		if (*error) {
-			g_slist_free(retval);
+		GSList *ll;
+		gboolean was_blocked;
+
+		ll = _gconf_cleaner_all_dirs_recursively(gcleaner,
+							 l->data,
+							 &was_blocked,
+							 error);
+		if (G_UNLIKELY (*error)) {
+			if (ll)
+				g_slist_free(ll);
+			if (retval)
+				g_slist_free(retval);
 			return NULL;
+		}
+		if (!was_blocked) {
+			gcleaner->n_dirs++;
+			retval = g_slist_append(retval, l->data);
+			if (G_LIKELY (ll))
+				retval = g_slist_concat(retval, ll);
 		}
 	}
 
@@ -107,7 +123,7 @@ gconf_cleaner_free(GConfCleaner *gcleaner)
 	g_return_if_fail (gcleaner != NULL);
 
 	gconf_engine_unref(gcleaner->gconf);
-	if (gcleaner->dirs)
+	if (G_LIKELY (gcleaner->dirs))
 		g_slist_free(gcleaner->dirs);
 	g_free(gcleaner);
 }
@@ -125,12 +141,12 @@ gconf_cleaner_update(GConfCleaner  *gcleaner,
 	g_return_val_if_fail (gcleaner != NULL, FALSE);
 	g_return_val_if_fail (error != NULL, FALSE);
 
-	if (*error != NULL) {
+	if (G_UNLIKELY (*error != NULL)) {
 		g_error_free(*error);
 		*error = NULL;
 	}
 	gcleaner->n_dirs = gcleaner->n_pairs = gcleaner->n_unknown_pairs = 0;
-	gcleaner->dirs = _gconf_cleaner_all_dirs_recursively(gcleaner, "/", error);
+	gcleaner->dirs = _gconf_cleaner_all_dirs_recursively(gcleaner, "/", NULL, error);
 	gcleaner->current_dir = gcleaner->dirs;
 	gcleaner->initialized = TRUE;
 
@@ -172,14 +188,14 @@ gconf_cleaner_get_unknown_pairs_at_current_dir(GConfCleaner  *gcleaner,
 	g_return_val_if_fail (gcleaner != NULL, NULL);
 	g_return_val_if_fail (error != NULL, NULL);
 
-	if (*error != NULL) {
+	if (G_UNLIKELY (*error != NULL)) {
 		g_error_free(*error);
 		*error = NULL;
 	}
 	path = gcleaner->current_dir->data;
 	gcleaner->current_dir = g_slist_next(gcleaner->current_dir);
 	pairs = gconf_engine_all_entries(gcleaner->gconf, path, &err);
-	if (err != NULL) {
+	if (G_UNLIKELY (err != NULL)) {
 		g_set_error(error, 0, 0,
 			    N_("Failed to get the entries in `%s': %s"),
 			    path, err->message);
@@ -198,7 +214,7 @@ gconf_cleaner_get_unknown_pairs_at_current_dir(GConfCleaner  *gcleaner,
 		}
 		gconf_entry_free(pair);
 	}
-	if (pairs)
+	if (G_LIKELY (pairs))
 		g_slist_free(pairs);
 
 	return retval;
@@ -237,4 +253,13 @@ gconf_cleaner_unset_key(GConfCleaner  *gcleaner,
 	g_return_if_fail (key != NULL);
 
 	gconf_engine_unset(gcleaner->gconf, key, error);
+}
+
+void
+gconf_cleaner_sync(GConfCleaner  *gcleaner,
+		   GError       **error)
+{
+	g_return_if_fail (gcleaner != NULL);
+
+	gconf_engine_suggest_sync(gcleaner->gconf, error);
 }
