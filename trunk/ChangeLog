@@ -1,5 +1,7 @@
 2007-04-01  Akira TAGOH  <at@gclab.org>
 
+	* README: describe something.
+
 	* src/main.c (_gconf_cleaner_question_dialog): new function.
 	(_gconf_cleaner_value_type_to_string): new function.
 	(_gconf_cleaner_value_list_to_string): new function.
