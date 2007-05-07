@@ -1,0 +1,83 @@
+2007-05-07  Akira TAGOH  <at@gclab.org>
+
+	* src/main.c (_gconf_cleaner_run_cleaning_cb): Fix a typo.
+	(_gconf_cleaner_button_about_on_clicked): Make a string as translatable.
+	(_gconf_cleaner_create_page): likewise.
+
+	* README: updated.
+
+	* src/gconf-cleaner.c (gconf_cleaner_get_unknown_pairs_at_current_dir):
+	check the actual instance of GConfSchema instead of the schema name.
+
+2007-04-01  Akira TAGOH  <at@gclab.org>
+
+	* README: describe something.
+
+	* src/main.c (_gconf_cleaner_question_dialog): new function.
+	(_gconf_cleaner_value_type_to_string): new function.
+	(_gconf_cleaner_value_list_to_string): new function.
+	(_gconf_cleaner_value_pair_to_string): new function.
+	(_gconf_cleaner_value_to_string): new function.
+	(_gconf_cleaner_button_about_on_clicked): new function.
+	(_gconf_cleaner_on_assistant_cancel): new function.
+	(_gconf_cleaner_save_on_response): new function.
+	(_gconf_cleaner_save_on_clicked): new function.
+	(_gconf_cleaner_run_cleaning_cb): sync DB after all unknown
+	pairs removed.
+	(_gconf_cleaner_create_page): add an expander to show the list
+	which keys are candidates.
+
+	* src/gconf-cleaner.c (_gconf_cleaner_all_dirs_recursively): add more blacklists.
+	(gconf_cleaner_sync): new function.
+
+2007-03-28  Akira TAGOH  <at@gclab.org>
+
+	* src/gconf-cleaner.c (_gconf_cleaner_all_dirs_recursively): add blacklist.
+
+	* src/main.c (_gconf_cleaner_error_dialog): new function.
+	(_gconf_cleaner_cancel_confirm_on_response): new function.
+	(_gconf_cleaner_on_assistant_cancel): new function.
+	(_gconf_cleaner_run_analysis_cb): Clear the pairs list if analysis ran once.
+	(_gconf_cleaner_create_page): Fix a typo.
+	(main): Destroy data.
+	(_gconf_cleaner_create_page): improve UI at page 2.
+
+	* src/gconf-cleaner.c (_gconf_cleaner_all_dirs_recursively):
+	exclude /schemas.
+	(gconf_cleaner_unset_key): new function.
+
+2007-03-27  Akira TAGOH  <at@gclab.org>
+
+	* src/gconf-cleaner.c (gconf_cleaner_get_unknown_pairs_at_current_dir):
+	Make GConfValue copy to not lost the data.
+	(gconf_cleaner_get_current_dir): new function.
+
+	* src/main.c: most implementation done.
+
+	* requires (GTK_REQUIRED): depends on 2.6.
+
+2007-03-06  Akira TAGOH  <at@gclab.org>
+
+	* requires: new.
+
+	* configure.ac: new.
+
+	* AUTHORS: new
+
+	* INSTALL: new
+
+	* src/gconf-cleaner.[ch]: implemented.
+
+	* src/Makefile.am: new
+
+	* ChangeLog: new
+
+	* COPYING: new.
+
+	* Makefile.am: new.
+
+	* autogen.sh: new.
+
+	* NEWS: new.
+
+	* README: new.
