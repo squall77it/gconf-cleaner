@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gconf-cleaner 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-07 22:45+0900\n"
-"PO-Revision-Date: 2007-05-07 22:51+0900\n"
+"POT-Creation-Date: 2007-05-07 23:01+0900\n"
+"PO-Revision-Date: 2007-05-07 23:02+0900\n"
 "Last-Translator: Akira TAGOH <at@gclab.org>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -34,6 +34,10 @@ msgstr "キー'%s'の値がありません"
 msgid "GConf Cleaner"
 msgstr "GConfクリーナー"
 
+#: ../src/main.c:310
+msgid "A Cleaning tool for GConf"
+msgstr "GConf用の掃除ツール"
+
 #: ../src/main.c:315
 msgid "translator-credits"
 msgstr "Akira TAGOH <at@gclab.org>"
@@ -52,7 +56,7 @@ msgstr "終了する場合、GConfキーは掃除されません"
 #: ../src/main.c:346
 #, c-format
 msgid "GConf Cleaner - (%d of %d)"
-msgstr "GConfクリーナー - (%2$d中%1$dページ目)"
+msgstr "GConfクリーナー - (%d/%dページ目)"
 
 #: ../src/main.c:421
 #, c-format
@@ -159,6 +163,14 @@ msgid ""
 msgstr ""
 "<small><i>注意: この掃除はアプリケーションの動作に影響をあたえる場合がありま"
 "す。データを失わないためにも保存してください</i></small>"
+
+#: ../src/main.c:822
+msgid "Key"
+msgstr "キー"
+
+#: ../src/main.c:829
+msgid "Value"
+msgstr "値"
 
 #: ../src/main.c:839
 msgid "Analyzing Result"
