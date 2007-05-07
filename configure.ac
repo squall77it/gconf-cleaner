@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT([gconf-cleaner], 0.0.1, [at@gclab.org])
+AC_INIT([gconf-cleaner], 0.0.2, [at@gclab.org])
 
 . ./requires
 
