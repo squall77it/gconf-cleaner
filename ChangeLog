@@ -1,5 +1,7 @@
 2007-05-07  Akira TAGOH  <at@gclab.org>
 
+	* src/main.c (_gconf_cleaner_run_cleaning_cb): Fix a typo.
+
 	* README: updated.
 
 	* src/gconf-cleaner.c (gconf_cleaner_get_unknown_pairs_at_current_dir):

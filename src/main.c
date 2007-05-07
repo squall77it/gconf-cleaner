@@ -647,7 +647,7 @@ _gconf_cleaner_run_cleaning_cb(gpointer data)
 				gconf_cleaner_unset_key(inst->cleaner, key, &error);
 				if (G_UNLIKELY (error)) {
 					_gconf_cleaner_error_dialog(inst,
-								    _("<span weight=\"bold\" size=\"larger\">Failed during cleaning GConf key up."),
+								    _("<span weight=\"bold\" size=\"larger\">Failed during cleaning GConf key up.</span>"),
 								    error->message,
 								    TRUE);
 					return FALSE;
