@@ -1,9 +1,9 @@
 GConf Cleaner
 ===============
 GConf Cleaner is a tool to clean your GConf database up that
-is possibly ate away with the unnecessary keys anymore or
-the invalid keys.  You may want to keep a clean your GConf
-database. this tool might help you in this case.
+is possibly cluttered with unnecessary or invalid keys.  You
+may want to keep a clean your GConf database. this tool
+might help you in this case.
 
 IMPORTANT: READ THIS BEFORE DOING
 ===================================
