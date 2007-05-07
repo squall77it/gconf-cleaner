@@ -1,6 +1,8 @@
 2007-05-07  Akira TAGOH  <at@gclab.org>
 
 	* src/main.c (_gconf_cleaner_run_cleaning_cb): Fix a typo.
+	(_gconf_cleaner_button_about_on_clicked): Make a string as translatable.
+	(_gconf_cleaner_create_page): likewise.
 
 	* README: updated.
 

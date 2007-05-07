@@ -307,7 +307,7 @@ _gconf_cleaner_button_about_on_clicked(GtkButton *button,
 	gtk_about_dialog_set_url_hook(_gconf_cleaner_about_url_cb, NULL, NULL);
 	gtk_show_about_dialog(GTK_WINDOW (inst->window),
 			      "name", _("GConf Cleaner"),
-			      "comments", "A Cleaning tool for GConf",
+			      "comments", _("A Cleaning tool for GConf"),
 			      "copyright", "(C) 2007 Akira TAGOH",
 			      "version", PACKAGE_VERSION,
 			      "website", "http://code.google.com/p/gconf-cleaner/",
@@ -819,14 +819,14 @@ _gconf_cleaner_create_page(GConfCleanerInstance *inst)
 								  NULL);
 		gtk_tree_view_append_column(GTK_TREE_VIEW (inst->treeview), column);
 		renderer = gtk_cell_renderer_text_new();
-		column = gtk_tree_view_column_new_with_attributes("Key",
+		column = gtk_tree_view_column_new_with_attributes(_("Key"),
 								  renderer,
 								  "text", 1,
 								  NULL);
 		gtk_tree_view_column_set_resizable(column, TRUE);
 		gtk_tree_view_append_column(GTK_TREE_VIEW (inst->treeview), column);
 		renderer = gtk_cell_renderer_text_new();
-		column = gtk_tree_view_column_new_with_attributes("Value",
+		column = gtk_tree_view_column_new_with_attributes(_("Value"),
 								  renderer,
 								  "text", 2,
 								  NULL);
