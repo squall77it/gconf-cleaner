@@ -204,13 +204,25 @@ gconf_cleaner_get_unknown_pairs_at_current_dir(GConfCleaner  *gcleaner,
 	}
 	for (l = pairs; l != NULL; l = g_slist_next(l)) {
 		GConfEntry *pair = l->data;
-		const gchar *schema = gconf_entry_get_schema_name(pair);
+		const gchar *schema_name = gconf_entry_get_schema_name(pair);
+		GConfSchema *schema = NULL;
 
 		gcleaner->n_pairs++;
+		if (schema_name) {
+			schema = gconf_engine_get_schema(gcleaner->gconf, schema_name, &err);
+		} else {
+			schema = NULL;
+		}
 		if (!schema) {
-			gcleaner->n_unknown_pairs++;
-			retval = g_slist_append(retval, g_strdup(gconf_entry_get_key(pair)));
-			retval = g_slist_append(retval, gconf_value_copy(gconf_entry_get_value(pair)));
+			GConfValue *v = gconf_entry_get_value(pair);
+
+			if (v) {
+				gcleaner->n_unknown_pairs++;
+				retval = g_slist_append(retval, g_strdup(gconf_entry_get_key(pair)));
+				retval = g_slist_append(retval, gconf_value_copy(v));
+			} else {
+				g_warning(_("No value for a key `%s'"), gconf_entry_get_key(pair));
+			}
 		}
 		gconf_entry_free(pair);
 	}
