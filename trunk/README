@@ -10,7 +10,7 @@ IMPORTANT: READ THIS BEFORE DOING
 On some applications, they put the GConf keys without
 schemas. in such case, your applications might be damaged
 after cleaning up. I'd recommend to save an registry in
-GConf Cleaner before actually cleaning up and if you see any
-weird behavior in your applications, restore your lost keys
-with gconftool --load <saved filename>.
+GConf from GConf Cleaner before actually cleaning up and if
+you see any weird behavior in your applications, restore
+your lost keys with gconftool --load <saved filename>.
 

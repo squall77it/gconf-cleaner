@@ -1,5 +1,7 @@
 2007-05-07  Akira TAGOH  <at@gclab.org>
 
+	* README: updated.
+
 	* src/gconf-cleaner.c (gconf_cleaner_get_unknown_pairs_at_current_dir):
 	check the actual instance of GConfSchema instead of the schema name.
 
