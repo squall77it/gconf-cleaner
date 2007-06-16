@@ -1,3 +1,7 @@
+2007-06-16  Akira TAGOH  <at@gclab.org>
+
+	* configure.ac: Add de to ALL_LINGUAS.
+
 2007-05-07  Akira TAGOH  <at@gclab.org>
 
 	* src/main.c (_gconf_cleaner_run_cleaning_cb): Fix a typo.
