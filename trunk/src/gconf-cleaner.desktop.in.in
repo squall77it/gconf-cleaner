@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+_Name=GConf Cleaner
+_Comment=A Cleaning tool for GConf
+Exec=gconf-cleaner
+Icon=
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GNOME;GTK;System;

@@ -1,3 +1,11 @@
+2007-07-17  Akira TAGOH  <akira@tagoh.org>
+
+	* src/Makefile.am: Update for .desktop file.
+
+	* src/gconf-cleaner.desktop.in.in: Add.
+
+	* src/gconf-cleaner.c (_gconf_cleaner_all_dirs_recursively): Add more blacklist.
+
 2007-06-16  Akira TAGOH  <at@gclab.org>
 
 	* configure.ac: Add de to ALL_LINGUAS.

@@ -18,3 +18,12 @@ gconf_cleaner_SOURCES =				\
 	gconf-cleaner.h				\
 	main.c					\
 	$(NULL)
+
+desktopdir = $(datadir)/applications
+desktop_in_files = gconf-cleaner.desktop.in
+desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+@INTLTOOL_DESKTOP_RULE@
+
+EXTRA_DIST =					\
+	$(desktop_in_files)			\
+	$(NULL)
