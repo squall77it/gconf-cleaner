@@ -3,7 +3,7 @@
  * Copyright (C) 2007 Akira TAGOH
  * 
  * Authors:
- *   Akira TAGOH  <at@gclab.org>
+ *   Akira TAGOH  <akira@tagoh.org>
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,8 +52,9 @@ _gconf_cleaner_all_dirs_recursively(GConfCleaner      *gcleaner,
 	GSList *subdirs, *l, *retval = NULL;
 	GError *err = NULL;
 	gint i;
+	/* XXX: may want to have more strict way of excluding keys */
 	static const gchar *blacklist[] = {
-		"schemas", "profiles", "preferences", "prefs",
+		"schemas", "profiles", "preferences", "prefs", "connected_servers", "wireless", "vpn_connections",
 		NULL,
 	};
 

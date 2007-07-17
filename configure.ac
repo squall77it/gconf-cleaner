@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT([gconf-cleaner], 0.0.2, [at@gclab.org])
+AC_INIT([gconf-cleaner], 0.0.2, [akira@tagoh.org])
 
 . ./requires
 
@@ -77,6 +77,7 @@ AC_CONFIG_FILES([
 Makefile
 po/Makefile.in
 src/Makefile
+src/gconf-cleaner.desktop.in
 ])
 AC_OUTPUT
 
