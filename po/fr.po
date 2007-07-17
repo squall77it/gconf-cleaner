@@ -1,0 +1,184 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Ersplus <ersplus@gmail.com>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gconf-cleaner 0.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-05-07 23:01+0900\n"
+"PO-Revision-Date: 2007-05-07 23:02+0900\n"
+"Last-Translator: Ersplus <ersplus@gmail.com>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/gconf-cleaner.c:74
+#, c-format
+msgid "Failed to get the directories in `%s': %s"
+msgstr "Erreur lors de l'obtention des dossiers dans %s': %s"
+
+#: ../src/gconf-cleaner.c:200
+#, c-format
+msgid "Failed to get the entries in `%s': %s"
+msgstr "Erreur lors de l'obtention des entrées dans %s': %s"
+
+#: ../src/gconf-cleaner.c:224
+#, c-format
+msgid "No value for a key `%s'"
+msgstr "Aucune valeur pour la clé `%s'"
+
+#: ../src/main.c:309 ../src/main.c:916
+msgid "GConf Cleaner"
+msgstr "GConf Cleaner"
+
+#: ../src/main.c:310
+msgid "A Cleaning tool for GConf"
+msgstr "Un outil de nettoyage pour Gconf"
+
+#: ../src/main.c:315
+msgid "translator-credits"
+msgstr "Ersplus <ersplus@gmail.com>"
+
+#: ../src/main.c:327
+msgid ""
+"<span weight=\"bold\" size=\"larger\">Do you want to leave GConf Cleaner?</"
+"span>"
+msgstr ""
+"<span weight=\"bold\" size=\"larger\">Voulez vous quitter Gconf Cleaner?</span>"
+
+#: ../src/main.c:328
+msgid "If you leave here, any GConf keys will not be cleaned up."
+msgstr ""
+
+#: ../src/main.c:346
+#, c-format
+msgid "GConf Cleaner - (%d of %d)"
+msgstr "GConf Cleaner - (%d de %d)"
+
+#: ../src/main.c:421
+#, c-format
+msgid "If you save the data as %s, original data will be lost."
+msgstr ""
+
+#: ../src/main.c:425
+msgid ""
+"<span weight=\"bold\" size=\"larger\">Do you want to overwrite a file?</span>"
+msgstr ""
+"<span weight=\"bold\" size=\"larger\">Voulez vous écraser le fichier?</span>"
+
+#: ../src/main.c:432
+#, c-format
+msgid "Failed during opening %s"
+msgstr "Erreur lors de l'opération %s"
+
+#: ../src/main.c:444
+msgid "Failed during saving GConf keys"
+msgstr "Erreur lors de la sauvegarde des clés GConf"
+
+#: ../src/main.c:473
+msgid "Save GConf keys as..."
+msgstr "Sauvegarde clés Gconf sous..."
+
+#: ../src/main.c:504
+msgid "Retrieving the GConf directories..."
+msgstr ""
+
+#: ../src/main.c:511
+msgid ""
+"<span weight=\"bold\" size=\"larger\">Failed during the initialization</span>"
+msgstr "<span weight=\"bold\" size=\"larger\">Erreur lors de l'initialisation</span>"
+
+#: ../src/main.c:518
+msgid "Analyzing the GConf directories..."
+msgstr "Analyse des dossiers GConf..."
+
+#: ../src/main.c:544
+msgid ""
+"<span weight=\"bold\" size=\"larger\">Failed during analyzing the GConf key</"
+"span>"
+msgstr ""
+"<span weight=\"bold\" size=\"larger\">Erreur lors de l'analyse des clés GConf</span>"
+
+#: ../src/main.c:600
+msgid "Please press Forward button to clean up the GConf keys."
+msgstr "Veuillez cliquer sur suivant pour nettoyer les clés GConf."
+
+#: ../src/main.c:605
+msgid "Luckily, there are no GConf keys can be cleaned up."
+msgstr "Félicitations, il n'y a aucune clé à nettoyer."
+
+#: ../src/main.c:650
+msgid ""
+"<span weight=\"bold\" size=\"larger\">Failed during cleaning GConf key up.</"
+"span>"
+msgstr ""
+
+#: ../src/main.c:677
+#, c-format
+msgid "%d of %d GConf keys has been cleaned up successfully."
+msgstr "%d sur %d clés GConf ont été nettoyé avec succès."
+
+#: ../src/main.c:693
+msgid ""
+"GConf Cleaner is to clean up the invalid keys or the unnecessary keys "
+"anymore in your GConf database.\n"
+"Please proceed next step to analyze how much such keys are stored.\n"
+msgstr ""
+"GConf Cleaner sert à nettoyer les clés invalides ou non nécessaires"
+"de Gconf.\n"
+"Veuillez cliquer sur suivant pour analyser combien de clés sont stockées.\n"
+
+#: ../src/main.c:701
+msgid "Welcome to GConf Cleaner"
+msgstr "Bienvenu sur GConf Cleaner"
+
+#: ../src/main.c:727
+msgid "Analyzing..."
+msgstr "Analyse..."
+
+#: ../src/main.c:750
+msgid "<b>GConf directories:</b>"
+msgstr "<b>Dossiers GConf:</b>"
+
+#: ../src/main.c:751
+msgid "<b>Total GConf keys:</b>"
+msgstr "<b>Nbre total de clés:</b>"
+
+#: ../src/main.c:752
+msgid "<b>Cleanable GConf keys:</b>"
+msgstr "<b>Clé pouvant être nettoyée:</b>"
+
+#: ../src/main.c:763
+msgid "_Details"
+msgstr "_Détails"
+
+#: ../src/main.c:767
+msgid ""
+"<small><i>Note: This cleanup may affects to your applications working. "
+"Please save here to not lose your data.</i></small>"
+msgstr ""
+"<small><i>Note: Ce nettoyage peut affecter le fonctionnement de vos aplications. "
+"Veuillez sauvegarder maintenant pour ne pas perdre vos données.</i></small>"
+
+#: ../src/main.c:822
+msgid "Key"
+msgstr "Clé"
+
+#: ../src/main.c:829
+msgid "Value"
+msgstr "Valeur"
+
+#: ../src/main.c:839
+msgid "Analyzing Result"
+msgstr "Analyse des résultats"
+
+#: ../src/main.c:862
+msgid "Cleaning up..."
+msgstr "Nettoyage..."
+
+#: ../src/main.c:879
+msgid "Congratulation"
+msgstr "Félicitation"
