@@ -1,5 +1,7 @@
 2007-07-17  Akira TAGOH  <akira@tagoh.org>
 
+	* configure.ac: Add fr and sv to ALL_LINGUAS.
+
 	* src/Makefile.am: Update for .desktop file.
 
 	* src/gconf-cleaner.desktop.in.in: Add.
