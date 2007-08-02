@@ -1,3 +1,7 @@
+2007-08-02  Akira TAGOH  <akira@tagoh.org>
+
+	* configure.ac: bump a version to 0.0.3.
+
 2007-07-17  Akira TAGOH  <akira@tagoh.org>
 
 	* configure.ac: Add fr and sv to ALL_LINGUAS.
