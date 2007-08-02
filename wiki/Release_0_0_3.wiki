@@ -1,5 +1,5 @@
 #summary One-sentence summary of this page.
-#labels News
+#labels Featured
 
 = gconf-cleaner-0.0.3 has been released =
 
