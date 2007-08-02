@@ -1,0 +1,185 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gconf-cleaner 0.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-05-07 23:01+0900\n"
+"PO-Revision-Date: 2007-05-07 23:02+0900\n"
+"Last-Translator: Akira TAGOH <akira@tagoh.org>\n"
+"Language-Team: Japanese <ja@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/gconf-cleaner.c:74
+#, c-format
+msgid "Failed to get the directories in `%s': %s"
+msgstr "'%s'内のディレクトリの取得に失敗しました: %s"
+
+#: ../src/gconf-cleaner.c:200
+#, c-format
+msgid "Failed to get the entries in `%s': %s"
+msgstr "`%s'内のエントリの取得に失敗しました: %s"
+
+#: ../src/gconf-cleaner.c:224
+#, c-format
+msgid "No value for a key `%s'"
+msgstr "キー'%s'の値がありません"
+
+#: ../src/main.c:309 ../src/main.c:916
+msgid "GConf Cleaner"
+msgstr "GConfクリーナー"
+
+#: ../src/main.c:310
+msgid "A Cleaning tool for GConf"
+msgstr "GConf用の掃除ツール"
+
+#: ../src/main.c:315
+msgid "translator-credits"
+msgstr "Akira TAGOH <akira@tagoh.org>"
+
+#: ../src/main.c:327
+msgid ""
+"<span weight=\"bold\" size=\"larger\">Do you want to leave GConf Cleaner?</"
+"span>"
+msgstr ""
+"<span weight=\"bold\" size=\"larger\">GConfクリーナーを終了しますか?</span>"
+
+#: ../src/main.c:328
+msgid "If you leave here, any GConf keys will not be cleaned up."
+msgstr "終了する場合、GConfキーは掃除されません"
+
+#: ../src/main.c:346
+#, c-format
+msgid "GConf Cleaner - (%d of %d)"
+msgstr "GConfクリーナー - (%d/%dページ目)"
+
+#: ../src/main.c:421
+#, c-format
+msgid "If you save the data as %s, original data will be lost."
+msgstr "%sとしてデータを保存する場合、元データが失われます"
+
+#: ../src/main.c:425
+msgid ""
+"<span weight=\"bold\" size=\"larger\">Do you want to overwrite a file?</span>"
+msgstr "<span weight=\"bold\" size=\"larger\">ファイルを上書きしますか?</span>"
+
+#: ../src/main.c:432
+#, c-format
+msgid "Failed during opening %s"
+msgstr "%sを開く間に失敗しました"
+
+#: ../src/main.c:444
+msgid "Failed during saving GConf keys"
+msgstr "GConfキーを保存中に失敗しました"
+
+#: ../src/main.c:473
+msgid "Save GConf keys as..."
+msgstr "別名でGConfキーを保存..."
+
+#: ../src/main.c:504
+msgid "Retrieving the GConf directories..."
+msgstr "GConfディレクトリを取得中..."
+
+#: ../src/main.c:511
+msgid ""
+"<span weight=\"bold\" size=\"larger\">Failed during the initialization</span>"
+msgstr "<span weight=\"bold\" size=\"larger\">初期化中に失敗しました</span>"
+
+#: ../src/main.c:518
+msgid "Analyzing the GConf directories..."
+msgstr "GConfディレクトリを解析中..."
+
+#: ../src/main.c:544
+msgid ""
+"<span weight=\"bold\" size=\"larger\">Failed during analyzing the GConf key</"
+"span>"
+msgstr ""
+"<span weight=\"bold\" size=\"larger\">GConfキーを解析中に失敗しました</span>"
+
+#: ../src/main.c:600
+msgid "Please press Forward button to clean up the GConf keys."
+msgstr "GConfキーを掃除する場合、進むボタンを押してください"
+
+#: ../src/main.c:605
+msgid "Luckily, there are no GConf keys can be cleaned up."
+msgstr "幸運にも掃除可能なGConfキーがありませんでした"
+
+#: ../src/main.c:650
+msgid ""
+"<span weight=\"bold\" size=\"larger\">Failed during cleaning GConf key up.</"
+"span>"
+msgstr ""
+"<span weight=\"bold\" size=\"larger\">GConfキーの掃除中に失敗しました</span>"
+
+#: ../src/main.c:677
+#, c-format
+msgid "%d of %d GConf keys has been cleaned up successfully."
+msgstr "%2$d個中%1$d個のGConfキーを掃除しました"
+
+#: ../src/main.c:693
+msgid ""
+"GConf Cleaner is to clean up the invalid keys or the unnecessary keys "
+"anymore in your GConf database.\n"
+"Please proceed next step to analyze how much such keys are stored.\n"
+msgstr ""
+"GConfクリーナーはGConfデータベース内の無効なキーや不要なキーを掃除するための"
+"ものです\n"
+"そのようなキーがどの程度保存されているか解析するために次のステップへ進んでく"
+"ださい\n"
+
+#: ../src/main.c:701
+msgid "Welcome to GConf Cleaner"
+msgstr "ようこそGConfクリーナーへ"
+
+#: ../src/main.c:727
+msgid "Analyzing..."
+msgstr "解析中..."
+
+#: ../src/main.c:750
+msgid "<b>GConf directories:</b>"
+msgstr "<b>GConfディレクトリ:</b>"
+
+#: ../src/main.c:751
+msgid "<b>Total GConf keys:</b>"
+msgstr "<b>全GConfキー:</b>"
+
+#: ../src/main.c:752
+msgid "<b>Cleanable GConf keys:</b>"
+msgstr "<b>掃除可能なGConfキー:</b>"
+
+#: ../src/main.c:763
+msgid "_Details"
+msgstr "詳細(_D)"
+
+#: ../src/main.c:767
+msgid ""
+"<small><i>Note: This cleanup may affects to your applications working. "
+"Please save here to not lose your data.</i></small>"
+msgstr ""
+"<small><i>注意: この掃除はアプリケーションの動作に影響をあたえる場合がありま"
+"す。データを失わないためにも保存してください</i></small>"
+
+#: ../src/main.c:822
+msgid "Key"
+msgstr "キー"
+
+#: ../src/main.c:829
+msgid "Value"
+msgstr "値"
+
+#: ../src/main.c:839
+msgid "Analyzing Result"
+msgstr "解析結果"
+
+#: ../src/main.c:862
+msgid "Cleaning up..."
+msgstr "掃除中..."
+
+#: ../src/main.c:879
+msgid "Congratulation"
+msgstr "おめでとうございます"

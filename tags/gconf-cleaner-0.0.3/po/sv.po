@@ -1,0 +1,169 @@
+# Swedish translation for gconf-cleaner.
+# Copyright (C) 2007 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gconf-cleaner package.
+# Daniel Nylander <po@danielnylander.se>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gconf-cleaner\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-05-08 08:02+0200\n"
+"PO-Revision-Date: 2007-05-08 08:51+0100\n"
+"Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
+"Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/gconf-cleaner.c:74
+#, c-format
+msgid "Failed to get the directories in `%s': %s"
+msgstr "Misslyckades med att få katalogerna i \"%s\": %s"
+
+#: ../src/gconf-cleaner.c:200
+#, c-format
+msgid "Failed to get the entries in `%s': %s"
+msgstr "Misslyckades med att få posterna i \"%s\": %s"
+
+#: ../src/gconf-cleaner.c:224
+#, c-format
+msgid "No value for a key `%s'"
+msgstr "Inget värde för nyckeln \"%s\""
+
+#: ../src/main.c:309
+#: ../src/main.c:916
+msgid "GConf Cleaner"
+msgstr "GConf Cleaner"
+
+#: ../src/main.c:310
+msgid "A Cleaning tool for GConf"
+msgstr "En rensningsverktyg för GConf"
+
+#: ../src/main.c:315
+msgid "translator-credits"
+msgstr "Daniel Nylander <po@danielnylander.se>"
+
+#: ../src/main.c:327
+msgid "<span weight=\"bold\" size=\"larger\">Do you want to leave GConf Cleaner?</span>"
+msgstr "<span weight=\"bold\" size=\"larger\">Vill du avsluta GConf Cleaner?</span>"
+
+#: ../src/main.c:328
+msgid "If you leave here, any GConf keys will not be cleaned up."
+msgstr "Om du avslutar här kommer inte några GConf-nycklar att rensas bort."
+
+#: ../src/main.c:346
+#, c-format
+msgid "GConf Cleaner - (%d of %d)"
+msgstr "GConf Cleaner - (%d av %d)"
+
+#: ../src/main.c:421
+#, c-format
+msgid "If you save the data as %s, original data will be lost."
+msgstr "Om du sparar datat som %s kommer det originaldatat att förloras."
+
+#: ../src/main.c:425
+msgid "<span weight=\"bold\" size=\"larger\">Do you want to overwrite a file?</span>"
+msgstr "<span weight=\"bold\" size=\"larger\">Vill du skriva över en fil?</span>"
+
+#: ../src/main.c:432
+#, c-format
+msgid "Failed during opening %s"
+msgstr "Misslyckades med att öppna %s"
+
+#: ../src/main.c:444
+msgid "Failed during saving GConf keys"
+msgstr "Misslyckades under sparning av GConf-nycklar"
+
+#: ../src/main.c:473
+msgid "Save GConf keys as..."
+msgstr "Spara GConf-nycklar som..."
+
+#: ../src/main.c:504
+msgid "Retrieving the GConf directories..."
+msgstr "Hämtar GConf-katalogerna..."
+
+#: ../src/main.c:511
+msgid "<span weight=\"bold\" size=\"larger\">Failed during the initialization</span>"
+msgstr "<span weight=\"bold\" size=\"larger\">Misslyckades under initieringen</span>"
+
+#: ../src/main.c:518
+msgid "Analyzing the GConf directories..."
+msgstr "Analyserar GConf-katalogerna..."
+
+#: ../src/main.c:544
+msgid "<span weight=\"bold\" size=\"larger\">Failed during analyzing the GConf key</span>"
+msgstr "<span weight=\"bold\" size=\"larger\">Misslyckades under analyseringen av GConf-nyckeln</span>"
+
+#: ../src/main.c:600
+msgid "Please press Forward button to clean up the GConf keys."
+msgstr "Tryck på Framåt för att rensa bort GConf-nycklarna."
+
+#: ../src/main.c:605
+msgid "Luckily, there are no GConf keys can be cleaned up."
+msgstr "Som tur är finns det inga GConf-nycklar som kan rensas bort."
+
+#: ../src/main.c:650
+msgid "<span weight=\"bold\" size=\"larger\">Failed during cleaning GConf key up.</span>"
+msgstr "<span weight=\"bold\" size=\"larger\">Misslyckades med att rensa bort GConf-nyckel.</span>"
+
+#: ../src/main.c:677
+#, c-format
+msgid "%d of %d GConf keys has been cleaned up successfully."
+msgstr "%d av %d GConf-nycklar har rensats bort."
+
+#: ../src/main.c:693
+msgid ""
+"GConf Cleaner is to clean up the invalid keys or the unnecessary keys anymore in your GConf database.\n"
+"Please proceed next step to analyze how much such keys are stored.\n"
+msgstr ""
+"GConf Cleaner rensar upp ogiltiga och onödiga nycklar i din GConf-databas.\n"
+"Fortsätt till nästa steg för att analysera hur många sådana nycklar som finns lagrade.\n"
+
+#: ../src/main.c:701
+msgid "Welcome to GConf Cleaner"
+msgstr "Välkommen till GConf Cleaner"
+
+#: ../src/main.c:727
+msgid "Analyzing..."
+msgstr "Analyserar..."
+
+#: ../src/main.c:750
+msgid "<b>GConf directories:</b>"
+msgstr "<b>GConf-kataloger:</b>"
+
+#: ../src/main.c:751
+msgid "<b>Total GConf keys:</b>"
+msgstr "<b>Totalt antal GConf-nycklar:</b>"
+
+#: ../src/main.c:752
+msgid "<b>Cleanable GConf keys:</b>"
+msgstr "<b>Rensningbara GConf-nycklar:</b>"
+
+#: ../src/main.c:763
+msgid "_Details"
+msgstr "_Detaljer"
+
+#: ../src/main.c:767
+msgid "<small><i>Note: This cleanup may affects to your applications working. Please save here to not lose your data.</i></small>"
+msgstr "<small><i>Observera: Den här upprensningen kan påverka hur dina program fungerar. Gör en sparning här för att undvika att förlora data.</i></small>"
+
+#: ../src/main.c:822
+msgid "Key"
+msgstr "Nyckel"
+
+#: ../src/main.c:829
+msgid "Value"
+msgstr "Värde"
+
+#: ../src/main.c:839
+msgid "Analyzing Result"
+msgstr "Analyserar resultatet"
+
+#: ../src/main.c:862
+msgid "Cleaning up..."
+msgstr "Rensar upp..."
+
+#: ../src/main.c:879
+msgid "Congratulation"
+msgstr "Gratulerar"
+
