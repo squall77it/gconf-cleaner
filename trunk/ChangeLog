@@ -1,3 +1,7 @@
+2007-08-07  Akira TAGOH  <akira@tagoh.org>
+
+	* configure.ac: Add es to ALL_LINGUAS.
+
 2007-08-06  Akira TAGOH  <akira@tagoh.org>
 
 	* configure.ac: Add it to ALL_LINGUAS.
