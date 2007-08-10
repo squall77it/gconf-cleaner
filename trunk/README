@@ -12,5 +12,5 @@ schemas. in such case, your applications might be damaged
 after cleaning up. I'd recommend to save an registry in
 GConf from GConf Cleaner before actually cleaning up and if
 you see any weird behavior in your applications, restore
-your lost keys with gconftool --load <saved filename>.
+your lost keys with gconftool-2 --load <saved filename>.
 
