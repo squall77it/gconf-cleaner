@@ -1,3 +1,8 @@
+2007-10-12  Akira TAGOH  <akira@tagoh.org>
+
+	* src/gconf-cleaner.desktop.in.in: Improve the comment to be
+	comfortable with GNOME HIG. (Issue #12)
+
 2007-08-10  Akira TAGOH  <akira@tagoh.org>
 
 	* README: correct the command name how to recover the keys.
