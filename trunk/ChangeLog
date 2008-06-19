@@ -1,3 +1,7 @@
+2008-06-19  Akira TAGOH  <akira@tagoh.org>
+
+	* configure.ac: Add pl to ALL_LINGUAS.
+
 2007-10-12  Akira TAGOH  <akira@tagoh.org>
 
 	* src/gconf-cleaner.desktop.in.in: Improve the comment to be
