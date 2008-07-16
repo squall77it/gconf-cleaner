@@ -133,7 +133,7 @@ _gconf_cleaner_question_dialog(GConfCleanerInstance *inst,
 
 	gtk_dialog_run(GTK_DIALOG (dialog));
 
-	retval = (gboolean)g_object_get_qdata(G_OBJECT (dialog), quark_question_response);
+	retval = (gboolean)GPOINTER_TO_UINT (g_object_get_qdata(G_OBJECT (dialog), quark_question_response));
 	gtk_widget_destroy(dialog);
 
 	return retval;
