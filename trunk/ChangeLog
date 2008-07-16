@@ -1,3 +1,8 @@
+2008-07-16  Akira TAGOH  <akira@tagoh.org>
+
+	* src/main.c (_gconf_cleaner_question_dialog):
+	Fix a gcc warning.
+
 2008-06-19  Akira TAGOH  <akira@tagoh.org>
 
 	* configure.ac: Add pl to ALL_LINGUAS.
